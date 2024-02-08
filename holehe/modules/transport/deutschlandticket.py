@@ -3,7 +3,7 @@ from holehe.localuseragent import *
 
 
 async def deutschlandticket(email, client, out):
-    name = "deutschlandticket.de"
+    name = "deutschlandticket"
     domain = "deutschlandticket.de"
     method = "register"
     frequent_rate_limit=False
@@ -20,8 +20,7 @@ async def deutschlandticket(email, client, out):
     }
     response = await client.post(
         'https://deutschlandticket.de/api/v2/auth/register/check-email?email=',
-        headers=headers,
-        data={"email":email})
+        data='{"email":' + f'"{email}"' + "}")
     data = response.json()
     out.append({"name": name,"domain":domain,"method":method,"frequent_rate_limit":frequent_rate_limit,
                     "rateLimit": False,
